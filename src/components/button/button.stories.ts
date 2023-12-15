@@ -29,13 +29,13 @@ export const Secondary: Story = {
 export const PrimaryOutlined: Story = {
   args: {
     ...Primary.args,
-    outlined: true,
+    hasOutline: true,
   },
 };
 
 export const SecondaryOutlined: Story = {
   args: {
     ...Secondary.args,
-    outlined: true
+    hasOutline: true
   },
 };
