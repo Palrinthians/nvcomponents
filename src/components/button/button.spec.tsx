@@ -13,30 +13,18 @@ describe('Button Component', () => {
   it('Should render with default styles', () => {
     const { container } = render(<Button variant='primary' label="Test Button" />);
     
-    expect(container.firstChild).toHaveClass('font-sans rounded-md text-white font-semibold py-2 px-2');
+    expect(container.firstChild).toHaveClass('btn');
   });
 
   it('Should render with outlined styles', () => {
-    const { container } = render(<Button variant='primary' label="Test Button" outlined />);
+    const { container } = render(<Button variant='primary' label="Test Button" hasOutline />);
     
-    expect(container.firstChild).toHaveClass('border-2 border-primary bg-transparent text-primary');
+    expect(container.firstChild).toHaveClass('btn-primary__outline');
   });
 
   it('Should render with shadow styles', () => {
-    const { container } = render(<Button variant='primary' label="Test Button" shadow />);
+    const { container } = render(<Button variant='primary' label="Test Button" hasShadow />);
     
-    expect(container.firstChild).toHaveClass('shadow-md');
-  });
-
-  it('Should render with hover styles', () => {
-    const { container } = render(<Button label="Test Button" variant="primary" />);
-    
-    expect(container.firstChild).toHaveClass('hover:bg-primary/80 hover:duration-200');
-  });
-
-  it('Should render with outlined hover styles', () => {
-    const { container } = render(<Button label="Test Button" outlined variant="primary" />);
-    
-    expect(container.firstChild).toHaveClass('hover:bg-primary hover:duration-200 hover:text-white');
+    expect(container.firstChild).toHaveClass('btn-shadow');
   });
 });
