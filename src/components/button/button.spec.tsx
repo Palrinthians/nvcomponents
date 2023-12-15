@@ -29,13 +29,13 @@ describe('Button Component', () => {
   });
 
   it('Should render with hover styles', () => {
-    const { container } = render(<Button label="Test Button" hover variant="primary" />);
+    const { container } = render(<Button label="Test Button" variant="primary" />);
     
     expect(container.firstChild).toHaveClass('hover:bg-primary/80 hover:duration-200');
   });
 
   it('Should render with outlined hover styles', () => {
-    const { container } = render(<Button label="Test Button" outlined hover variant="primary" />);
+    const { container } = render(<Button label="Test Button" outlined variant="primary" />);
     
     expect(container.firstChild).toHaveClass('hover:bg-primary hover:duration-200 hover:text-white');
   });

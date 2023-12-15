@@ -1,55 +1,42 @@
 import React from "react";
-
-import {
-  baseClasses,
-  variantClasses,
-  outlinedClasses,
-  shadowClasses,
-  hoverClasses,
-  outlinedHoverClasses,
-} from "./button.classes";
+import { handleClassString } from "../../utils/handleClassString.util";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant: "primary" | "secondary";
-  outlined?: boolean;
-  shadow?: boolean;
-  hover?: boolean;
+  hasOutline?: boolean;
+  hasShadow?: boolean;
   label: string;
   custom?: string;
 }
 
 export const Button = ({
   variant = "primary",
-  outlined,
-  shadow,
-  hover,
+  hasOutline = false,
+  hasShadow = false,
   label,
-  custom,
+  custom = '',
   ...props
 }: ButtonProps) => {
-  const isOutlinedHover = outlined && hover;
 
-  // Remove text-white if outlined is true
-  const editBaseClasses = outlined
-    ? baseClasses.replace("text-white", "")
-    : baseClasses;
+  const shadow = handleClassString(hasShadow, 'btn-shadow')
 
-  const classes = [
-    editBaseClasses,
-    variantClasses[variant],
-    outlined && outlinedClasses[variant],
-    shadow && shadowClasses,
-    hover && hoverClasses[variant],
-    isOutlinedHover && outlinedHoverClasses[variant],
-  ].join(" ").replace("false", "");
+  const variantType = {
+    primary: 'btn-primary',
+    secondary: 'btn-secondary'
+  }
 
-  const customClasses = [
-    classes,
-    custom,
-  ].join(" ")
+  const outline = {
+    primary: handleClassString(hasOutline, `btn-primary__outline`),
+    secondary: handleClassString(hasOutline, `btn-secondary__outline`)
+  }
+
+  
+
+  const classes = `btn ${variantType[variant]} ${shadow} ${outline[variant]}`
+
 
   return (
-    <button type="button" className={custom ? customClasses : classes} {...props}>
+    <button type="button" className={classes} {...props}>
       {label}
     </button>
   );
